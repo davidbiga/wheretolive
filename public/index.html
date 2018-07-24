@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tell Me Where To Live</title>
+    <base href="/">
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./javascript/us-map/lib/raphael.js"></script>
+    <script src="./javascript/us-map/jquery.usmap.js"></script>
+    <script src="./javascript/main.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    <style class="styles">body {
+            background: #6151ff;
+            font-family: "Arial";
+          }
+          
+          .download-container {
+            transition: all 0.5s;
+            overflow: hidden;
+            background: #eee;
+            width: 400px;
+            height: 250px;
+            margin: 200px auto;
+            position: relative;
+            display: flex;
+            align-items: center;
+            -webkit-box-shadow: 0px 0px 97px -16px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: 0px 0px 97px -16px rgba(0, 0, 0, 0.75);
+            box-shadow: 0px 0px 97px -16px rgba(0, 0, 0, 0.75);
+          }
+          .download-container a.btn-download {
+            opacity: 1;
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            text-align: center;
+            displaY: block;
+            position: relative;
+            width: 100%;
+            padding-top: 14px;
+            padding-bottom: 14px;
+            font-family: 'Arial';
+            font-weight: bold;
+            font-size: 14px;
+            letter-spacing: 0.1rem;
+            transition: transform 0.3s 0.3s;
+            z-index: 10;
+          }
+          .download-container .closeBtn {
+            position: absolute;
+            top: 0;
+            right: 0;
+            border: none;
+            background: none;
+            outline: none;
+            opacity: 0;
+            visibility: hidden;
+            cursor: pointer;
+            font-size: 20px;
+            padding-right: 8px;
+            padding-top: 5px;
+            z-index: 20;
+          }
+          .download-container .done {
+            z-index: 20;
+            color: #000;
+            position: absolute;
+            font-size: 18px;
+            font-famil: 'Arial';
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -250%);
+            transition: all 0.3s 1s;
+            opacity: 0;
+            text-align: center;
+            width: 100%;
+          }
+          .download-container .done svg {
+            display: block;
+            text-align: center;
+            margin: 0 auto;
+            padding-bottom: 20px;
+            font-size: 60px;
+            animation: reveal-left 0.5s;
+          }
+          
+          @keyframes loading {
+            0% {
+              width: 5%;
+            }
+            30% {
+              width: 25%;
+            }
+            60% {
+              width: 50%;
+            }
+            80% {
+              width: 99%;
+            }
+            100% {
+              width: 100%;
+            }
+          }
+          @keyframes reveal-left {
+            from {
+              opacity: 0;
+              transform: translate3d(-50px, 0, 0);
+            }
+            to {
+              opacity: 1;
+              transform: translate3d(0, 0, 0);
+            }
+          }
+          @keyframes reveal-slide {
+            from {
+              opacity: 0;
+              transform: translate3d(0, 100%, 0);
+            }
+            to {
+              opacity: 1;
+              transform: translate3d(0, 0, 0);
+            }
+          }
+          </style>
+</head>
+<body>
+
+    <div id="app">
+    <div :style="styleDownload" class="download-container">
+        <a  :style="btnDownload" @click="download" class="btn btn-download" href="#">{{ name }}</a>
+        <button :style="closeBtn" @click="close" class="closeBtn"><i class="fas fa-times"></i>
+    </button>
+        <span :style="done" class="done" v-html="status"></span>
+    </div>
+    <div id="map" style="width: 500px; height: 500px; margin:0 auto;"></div>
+    </div>
+</body>
+</html>

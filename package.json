@@ -1,0 +1,14 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+  },
+  "author": "David Biga",
+  "license": "ISC",
+  "description": "Connects to Elasticsearch to query ML Influencers.",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "express": "^4.16.3"
+  }
+}
